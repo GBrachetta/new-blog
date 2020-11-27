@@ -43,9 +43,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_cleanup.apps.CleanupConfig",
     "crispy_forms",
-    "blog",
-    "users",
+    'blog.apps.BlogConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -137,5 +138,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = "/static/"
-LOGIN_REDIRECT_URL = 'blog-home'
-LOGIN_URL = 'login'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = "/media/"
+
+
+LOGIN_REDIRECT_URL = "blog-home"
+LOGIN_URL = "login"
