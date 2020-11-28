@@ -29,7 +29,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG")
+# DEBUG = os.environ.get("DEBUG")
+DEBUG = os.environ.get("DEBUG") == "True"
 
 ALLOWED_HOSTS = []
 
@@ -45,8 +46,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_cleanup.apps.CleanupConfig",
     "crispy_forms",
-    'blog.apps.BlogConfig',
-    'users.apps.UsersConfig',
+    "blog.apps.BlogConfig",
+    "users.apps.UsersConfig",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -137,6 +139,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
@@ -152,3 +155,12 @@ EMAIL_PORT = 587
 EMAIL_HOST = "smtp.strato.com"
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_REGION_NAME = "eu-central-1"
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
