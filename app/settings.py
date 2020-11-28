@@ -176,8 +176,13 @@ if "USE_AWS" in os.environ:
     AWS_S3_REGION_NAME = "eu-central-1"
     DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
     STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-    MEDIAFILES_LOCATION = "media" # New
-    STATICFILES_LOCATION = "static" # New
+    MEDIAFILES_LOCATION = "media"  # New
+    STATICFILES_LOCATION = "static"  # New
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"  # New
+    STATICFILES_STORAGE = "custom_storages.StaticStorage"  # New
+    DEFAULT_FILE_STORAGE = "custom_storages.MediaStorage"  # New
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/"  # N
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/"  # New
 ##
     # AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
     # STATICFILES_STORAGE = "custom_storages.StaticStorage"
