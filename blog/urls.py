@@ -7,10 +7,12 @@ from .views import (
     PostUpdateView,
     PostDeleteView,
     UserPostListView,
+    home,
 )
 
 urlpatterns = [
-    path("", PostListView.as_view(), name="blog-home"),
+    path("", home, name="home"),
+    path("blog/", PostListView.as_view(), name="blog-home"),
     path(
         "user/<str:username>/", UserPostListView.as_view(), name="user-posts"
     ),
