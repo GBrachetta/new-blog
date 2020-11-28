@@ -35,6 +35,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = os.environ.get("DEBUG") == "True"
 
 ALLOWED_HOSTS = [
+    "giuliariana.club",
     "www.giuliariana.club",
     "giuliariana.herokuapp.com",
     "127.0.0.1",
@@ -174,8 +175,9 @@ if "USE_AWS" in os.environ:
     AWS_S3_FILE_OVERWRITE = False
     AWS_DEFAULT_ACL = None
     AWS_S3_REGION_NAME = "eu-central-1"
-    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-    STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    # DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"  # mine
+    # STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"  # mine
+    # All this below from Chris. Maybe unnecessary.
     MEDIAFILES_LOCATION = "media"  # New
     STATICFILES_LOCATION = "static"  # New
     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"  # New
@@ -183,11 +185,5 @@ if "USE_AWS" in os.environ:
     DEFAULT_FILE_STORAGE = "custom_storages.MediaStorage"  # New
     STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/"  # N
     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/"  # New
-##
-    # AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-    # STATICFILES_STORAGE = "custom_storages.StaticStorage"
-    # DEFAULT_FILE_STORAGE = "custom_storages.MediaStorage"
-    # STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/"
-    # MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/"
 
 # django_heroku.settings(locals())
