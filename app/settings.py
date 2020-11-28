@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 import dj_database_url
 from dotenv import load_dotenv
 
@@ -32,7 +33,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # DEBUG = os.environ.get("DEBUG")
 DEBUG = os.environ.get("DEBUG") == "True"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['giuliariana.herokuapp.com']
 
 
 # Application definition
@@ -164,3 +165,4 @@ AWS_DEFAULT_ACL = None
 AWS_S3_REGION_NAME = "eu-central-1"
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+django_heroku.settings(locals())
