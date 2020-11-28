@@ -18,6 +18,9 @@
             </div>
             <h2><a class="article-title" href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h2>
             <p class="article-content">{{ post.content }}</p>
+            {% if post.image %}
+            <img class="img-fluid" src="{{ post.image.url }}" alt="">
+            {% endif %}
         </div>
     </article>
 </div>

@@ -41,7 +41,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ["title", "content"]
+    fields = ["title", "content", "image"]
     success_url = "/blog/"
 
     def form_valid(self, form):

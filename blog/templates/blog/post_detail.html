@@ -17,6 +17,9 @@
         </div>
         <h2 class="article-title">{{ object.title }}</h2>
         <p class="article-content">{{ object.content }}</p>
+        {% if object.image %}
+        <img class="img-fluid" src="{{ object.image.url }}" alt="">
+        {% endif %}
     </div>
 </article>
 
