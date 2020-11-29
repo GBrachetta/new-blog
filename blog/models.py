@@ -28,4 +28,23 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
+        """URL"""
+
         return reverse("post-detail", kwargs={"pk": self.pk})
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="user_profile"
+    )
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name="comments"
+    )
+    body = models.TextField(max_length=300)
+    date_posted = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        ordering = ("-date_posted",)
+
+    def __str__(self):
+        return f"Comment by {self.user} on {self.date_posted}"

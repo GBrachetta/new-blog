@@ -1,15 +1,17 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
-from django.shortcuts import render, get_object_or_404
+from users.models import Profile
+from django.shortcuts import redirect, render, get_object_or_404
 from django.views.generic import (
     CreateView,
-    DetailView,
+    # DetailView,
     ListView,
     UpdateView,
     DeleteView,
 )
 
-from .models import Post
+from .models import Comment, Post
+from .forms import CommentForm
 
 
 def home(request):
@@ -35,8 +37,57 @@ class UserPostListView(ListView):
         return Post.objects.filter(author=user).order_by("-date_posted")
 
 
-class PostDetailView(DetailView):
-    model = Post
+# class PostDetailView(DetailView):
+#     model = Post
+
+
+def post_detail(request, pk):
+    """detail"""
+    post = get_object_or_404(Post, id=pk)
+    author_profile = get_object_or_404(Profile, user=request.user.id)
+    avatar = author_profile.image.url
+    comments = post.comments.all()
+    new_comment = None
+    if request.method == "POST":
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.post = post
+            new_comment.user = request.user
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+    comment_form = CommentForm()
+
+    context = {
+        "object": post,
+        "comments": comments,
+        "form": comment_form,
+        "new_comment": new_comment,
+        "avatar": avatar,
+    }
+
+    return render(request, "blog/post_detail.html", context)
+
+
+# def add_comment_to_post(request, pk):
+#     """add comment"""
+
+#     post = get_object_or_404(Post, id=pk)
+#     current_profile = get_object_or_404(Profile, user=request.user.id)
+#     avatar = current_profile.image.url
+#     comments = post.comments.all()
+#     new_comment = None
+#     if request.method == "POST":
+#         comment_form = CommentForm(data=request.POST)
+#         if comment_form.is_valid():
+#             new_comment = comment_form.save(commit=False)
+#             new_comment.post = post
+#             new_comment.user = request.user
+#             new_comment.save()
+#             return redirect('post-detail', pk=post.pk)
+
+#     return render(request, "blog/home.html")
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):

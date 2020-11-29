@@ -27,6 +27,8 @@ def register(request):
 def profile(request):
     """View Profile"""
     if request.method == "POST":
+        if request.FILES:
+            request.user.profile.is_resized = False
         u_form = UserUpdateForm(
             request.POST,
             instance=request.user,
