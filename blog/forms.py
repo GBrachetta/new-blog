@@ -1,5 +1,7 @@
 from django import forms
-from .models import Comment
+from users.widgets import CustomClearableFileInput
+
+from .models import Comment, Post
 
 
 class CommentForm(forms.ModelForm):
@@ -9,3 +11,12 @@ class CommentForm(forms.ModelForm):
         widgets = {
             "body": forms.Textarea(attrs={"rows": 4}),
         }
+
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ("title", "content", "image")
+    image = forms.ImageField(
+            label="", required=False, widget=CustomClearableFileInput
+        )

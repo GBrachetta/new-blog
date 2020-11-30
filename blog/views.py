@@ -10,7 +10,7 @@ from django.views.generic import (
 )
 
 from .models import Post
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 
 
 def home(request):
@@ -75,7 +75,7 @@ def add_comment_to_post(request, pk):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ["title", "content", "image"]
+    form_class = PostForm
     success_url = "/blog/"
 
     def form_valid(self, form):
@@ -85,7 +85,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ["title", "content", "image"]
+    form_class = PostForm
 
     def form_valid(self, form):
         form.instance.author = self.request.user
