@@ -10,7 +10,10 @@ post
     <div class="media-body">
         <div class="article-metadata">
             <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
-            <small class="text-muted">{{ object.date_posted|date:"F d, Y" }} at {{ object.date_posted|date:"H:i" }}</small>
+            {% if object.author.profile.first_name or object.author.profile.last_name %}
+            <small class="small">({{ object.author.profile.first_name }} {{ object.author.profile.last_name }})</small>
+            {% endif %}
+            <p class="text-muted small">{{ object.date_posted|date:"F d, Y" }} at {{ object.date_posted|date:"H:i" }}</p>
             {% if object.author == user %}
             <div>
                 <a href="{% url 'post-update' object.pk %}" class="btn btn-secondary btn-sm my-1">Update</a>
@@ -26,8 +29,7 @@ post
         <hr>
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-
+                <div class="col">
                     <a class="btn btn-info btn-sm" href="{% url 'add_comment_to_post' pk=object.pk %}">Add comment</a>
                     <h5 class="my-3">Comments</h5>
                     {% for comment in comments %}

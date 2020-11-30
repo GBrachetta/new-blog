@@ -6,6 +6,8 @@ from blog.make_thumbnail import make_thumbnail
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=15, blank=True)
+    last_name = models.CharField(max_length=15, blank=True)
     image = models.ImageField(
         default="default.jpg",
         upload_to="profile_pics/",

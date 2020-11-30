@@ -11,7 +11,10 @@ blog
         <div class="media-body">
             <div class="article-metadata">
                 <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
-                <small class="text-muted">{{ post.date_posted|date:"F d, Y" }} at {{ post.date_posted|date:"H:i" }}</small>
+                {% if post.author.profile.first_name or post.author.profile.last_name %}
+                <small class="small">({{ post.author.profile.first_name }} {{ post.author.profile.last_name }})</small>
+                {% endif %}
+                <p class="text-muted small">{{ post.date_posted|date:"F d, Y" }} at {{ post.date_posted|date:"H:i" }}</p>
             </div>
             <h3 class="post-title">
                 {{ post.title }}
