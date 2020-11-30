@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.views.generic import (
     CreateView,
     ListView,
@@ -48,6 +49,7 @@ def post_detail(request, pk):
     return render(request, "blog/post_detail.html", context)
 
 
+@login_required
 def add_comment_to_post(request, pk):
     """Add comment"""
 
