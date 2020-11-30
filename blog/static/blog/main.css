@@ -180,3 +180,18 @@ label[for="id_body"] {
     word-break: break-all;
     word-wrap: break-word;
 }
+
+.legend-profile {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+@media screen and (min-width: 768px) {
+    .username {
+        font-size: 2rem;
+    }
+
+    .legend-profile {
+        font-size: 1.5rem;
+    }
+}
