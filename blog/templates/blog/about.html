@@ -4,5 +4,12 @@ about
 {% endblock title %}
 {% block content %}
 <div class="background background-3"></div>
-<h1>About Page</h1>
+<h1 class="pl-3">About Page</h1>
+<div class="container">
+    <div class="row">
+        <div class="col col-md-6 bg-about p-3">
+            {% lorem 2 p random %}
+        </div>
+    </div>
+</div>
 {% endblock content %}

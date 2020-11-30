@@ -110,9 +110,9 @@ html {
 }
 
 .bg-pink {
-    /* background-color: #e895ff; */
-    background-color: #9d7bec !important;
+    background-color: #9d7bec;
 }
+
 .avatar {
     border-radius: 50%;
     width: 50px;
@@ -170,4 +170,8 @@ label[for="id_body"] {
 
 .posts-by {
     font-size: 1.4rem;
+}
+
+.bg-about {
+    background-color: rgba(223, 223, 223, 0.5);
 }
