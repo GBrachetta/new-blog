@@ -1,4 +1,7 @@
 {% extends 'blog/base.html' %}
+{% block title %}
+post
+{% endblock title %}
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="overlay"></div>
@@ -7,7 +10,7 @@
     <div class="media-body">
         <div class="article-metadata">
             <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
-            <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+            <small class="text-muted">{{ object.date_posted|date:"F d, Y" }} at {{ object.date_posted|date:"H:i" }}</small>
             {% if object.author == user %}
             <div>
                 <a href="{% url 'post-update' object.pk %}" class="btn btn-secondary btn-sm my-1">Update</a>
@@ -15,7 +18,7 @@
             </div>
             {% endif %}
         </div>
-        <h2 class="article-title">{{ object.title }}</h2>
+        <h3 class="post-title">{{ object.title }}</h3>
         <p class="article-content">{{ object.content }}</p>
         {% if object.image %}
         <img class="img-fluid" src="{{ object.image.url }}" alt="">

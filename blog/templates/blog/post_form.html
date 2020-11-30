@@ -1,4 +1,7 @@
 {% extends "blog/base.html" %}
+{% block title %}
+post
+{% endblock title %}
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="overlay"></div>
@@ -10,7 +13,7 @@
             {{ form|crispy }}
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-info" type="submit">Update</button>
+            <button class="btn btn-info" type="submit">Post</button>
             <a href="{% url 'blog-home' %}" class="btn btn-outline-info">Cancel</a>
         </div>
     </form>
