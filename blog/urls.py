@@ -2,14 +2,13 @@ from django.urls import path
 from .views import (
     PostListView,
     about,
-    # PostDetailView,
     PostCreateView,
     PostUpdateView,
     PostDeleteView,
     UserPostListView,
     home,
     post_detail,
-    # add_comment_to_post,
+    add_comment_to_post,
 )
 
 urlpatterns = [
@@ -28,5 +27,9 @@ urlpatterns = [
         "post/<int:pk>/delete/", PostDeleteView.as_view(), name="post-delete"
     ),
     path("about/", about, name="blog-about"),
-    # path("post/<int:pk>/comment", add_comment_to_post, name="add-comment"),
+    path(
+        "post/<int:pk>/comment",
+        add_comment_to_post,
+        name="add_comment_to_post",
+    ),
 ]

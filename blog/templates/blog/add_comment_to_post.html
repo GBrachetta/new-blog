@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1>New comment</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <form method="POST" class="post-form">{% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="save btn btn-info btn-sm">Send</button>
+                <a href="{% url 'post-detail' post_pk %}" class="save btn btn-outline-info btn-sm">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
