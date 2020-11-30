@@ -18,7 +18,13 @@ home
     <div class="row h-100">
         <div class="col-7 col-md-6 my-auto">
             <h1 class="display-4 logo-font text-black">Giulia's site</h1>
-            {% lorem 2 p random %}
+            <p class="font-weight-bold">Welcome to my blog! Please join in and post your favourite thoughts and comments!</p>
+            <p class="text-info font-weight-bold">Register free for an account and start posting!</p>
+            <a class="btn btn-info" href="{% url 'blog-home' %}">My Blog</a>
+            <br>
+            <a class="btn btn-outline-info btn-sm mt-3" href="{% url 'login' %}">Login</a>
+            <br>
+            <a class="btn btn-outline-info btn-sm mt-3" href="{% url 'register' %}">Register</a>
         </div>
     </div>
 </div>
