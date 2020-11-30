@@ -175,3 +175,8 @@ label[for="id_body"] {
 .bg-about {
     background-color: rgba(223, 223, 223, 0.5);
 }
+
+.username {
+    word-break: break-all;
+    word-wrap: break-word;
+}

@@ -9,8 +9,8 @@ my profile
     <div class="media">
         <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
         <div class="media-body">
-            <h2 class="account-heading">{{ user.username }}</h2>
-            <p class="text-secondary">{{ user.email }}</p>
+            <h5 class="font-weight-bold username">{{ user.username }}</h5>
+            <p class="text-info small">{{ user.email }}</p>
         </div>
     </div>
     <form method="POST" enctype="multipart/form-data">
